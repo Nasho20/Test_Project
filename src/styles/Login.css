@@ -1,0 +1,70 @@
+.bg-image {
+  background-image: url("https://moodlesports.univ-brest.fr/Documentation/assets/img/page_bg/page_bg_blur02.jpg");
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background-color: rgb(9, 110, 226);
+  border: solid 1px;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 5px 10px;
+}
+
+@keyframes pan {
+  100% {
+    background-position: 15% 50%;
+  }
+}
+
+body {
+  place-items: center;
+  margin: 0;
+  padding: 24px;
+}
+
+@media (width >=500px) {
+  body {
+    padding: 0;
+  }
+}
+
+.login-box {
+  padding: 44px 30px 44px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #efefef;
+  text-align: center;
+  border-style: ridge;
+  border-color: orange;
+}
+
+@media (width >=500px) {
+  .login-box {
+    margin: auto;
+    width: 400px;
+    position: relative;
+    margin-top: 80px;
+    box-shadow: 5px 10px rgb(189, 190, 186);
+  }
+}
+
+#username,
+#password {
+  margin-bottom: 8px;
+}

@@ -1,11 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import "../styles/Register.css"
 
 export default function Register() {
-    <div>
-        <h1>Register</h1>
-        <h3>Complete your profile</h3>
-    </div>
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
 
 }
 

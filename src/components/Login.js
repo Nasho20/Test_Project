@@ -5,8 +5,9 @@ export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-    console.log(username + password)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(username);
 
   }
 
@@ -21,7 +22,7 @@ export default function Login() {
           <input type="checkbox" id="remember-me" name="remember-button" value="Remember" />
           <label for="remember-button">Remember me</label><br />
           <a href="/">Forgot your password?</a> <br />
-          <button className='signup'>SIGN UP</button><button>LOGIN</button>
+          <button className='signup'>SIGN UP</button><button type='submit'>LOGIN</button>
         </form>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Login from './components/Login.js'
 import Register from './components/Register';
@@ -10,7 +10,6 @@ function App() {
       {
         currentForm == "login" ? <Login /> : <Register />
       }
-      <Login />
     </div>
   );
 }

@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import '../styles/Login.css'
 
 export default function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username);
+    console.log(email);
 
   }
 
@@ -17,9 +17,9 @@ export default function Login() {
         <h1>Login</h1>
         <h3>Enter your credentials:</h3>
         <form onSubmit={handleSubmit} className='login-form'>
-          <label htmlFor='username'>Email: </label>
-          <input value={username} type="email" placeholder="Username" id="username" onChange={(e) => setUsername(e.target.value)} /><br />
-          <label htmlFor='password'>Password: </label>
+          <label htmlFor='email'></label>
+          <input value={email} type="email" placeholder="Email" id="email" onChange={(e) => setEmail(e.target.value)} /><br />
+          <label htmlFor='password'></label>
           <input value={password} type="password" placeholder="Password" id="password" onChange={(e) => setPassword(e.target.value)} /> <br />
           <input type="checkbox" id="remember-me" name="remember-button" value="Remember" />
           <label for="remember-button">Remember me</label><br />

@@ -17,8 +17,10 @@ export default function Login() {
         <h1>Login</h1>
         <h3>Enter your credentials:</h3>
         <form onSubmit={handleSubmit} className='login-form'>
-          <label htmlFor='username'>Email: </label>
-          <input value={username} type="email" placeholder="Username" id="username" onChange={(e) => setUsername(e.target.value)} /><br />
+          <div className='email'>
+            <label htmlFor='username'>Email: </label>
+            <input value={username} type="email" placeholder="Username" id="username" onChange={(e) => setUsername(e.target.value)} /><br />
+          </div>
           <label htmlFor='password'>Password: </label>
           <input value={password} type="password" placeholder="Password" id="password" onChange={(e) => setPassword(e.target.value)} /> <br />
           <input type="checkbox" id="remember-me" name="remember-button" value="Remember" />

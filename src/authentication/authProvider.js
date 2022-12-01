@@ -4,11 +4,11 @@ import {
     AUTH_LOGOUT,
     AUTH_ERROR,
     AUTH_CHECK,
-}  from 'react-admin';
+} from 'react-admin';
 import { createBrowserHistroy } from 'history';
 const history = createBrowserHistroy();
 
-const homepage=()=> {
+const homepage = () => {
     history.push('/home'); //kryen redirect te funksionit ne homepage
 }
 
@@ -42,14 +42,14 @@ export default (type, params, props) => {
     if (type === AUTH_ERROR) {
         const { status } = params;
         return status === 401 || status === 403
-        ? Promise.reject()
-        : Promise.resolve();
+            ? Promise.reject()
+            : Promise.resolve();
     }
 
     if (type === AUTH_CHECK) {
         return localStorage.getItem('not_authenticated')
-        ? Promise.reject()
-        : Promise.resolve();
+            ? Promise.reject()
+            : Promise.resolve();
     }
 
     if (type === AUTH_GET_PERMISSIONS) {

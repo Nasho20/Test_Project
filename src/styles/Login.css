@@ -63,7 +63,11 @@ body {
   }
 }
 
-#email,
+#username,
 #password {
   margin-bottom: 8px;
+}
+
+.email {
+  margin-left: 26px;
 }

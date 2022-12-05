@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import '../styles/Login.css'
+import UserProfile from './UserProfile';
 
-export default function Login() {
+function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -9,8 +11,20 @@ export default function Login() {
     e.preventDefault();
     console.log(username);
 
+    const navigate = useNavigate();
+
+    const navigateTo = () => {
+      navigate('');
+    }
+    const navigateLogin = () => {
+      navigate('/');
+    }
+
   }
 
+  // https://bobbyhadz.com/blog/react-onclick-redirect#:~:text=To%20redirect%20to%20another%20page,function%20lets%20us%20navigate%20programmatically. 
+  // https://react-hook-form.com/api/useform/handlesubmit/
+  // UserProfile to be added as a tag and working on the redirect button of log in 
   return (
     <div className='bg-image'>
       <div className='login-box'>
@@ -26,9 +40,11 @@ export default function Login() {
           <input type="checkbox" id="remember-me" name="remember-button" value="Remember" />
           <label for="remember-button">Remember me</label><br />
           <a href="/">Forgot your password?</a> <br />
-          <button className='signup'>SIGN UP</button><button type='submit'>LOGIN</button>
+          <button className='signup'>SIGN UP</button><button type='submit' onClick={navigateToProfile}>LOGIN</button>
         </form>
       </div>
     </div>
   )
 }
+
+export default Login;

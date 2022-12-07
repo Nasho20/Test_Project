@@ -1,30 +1,28 @@
 import React, { useState } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom';
 import '../styles/Login.css'
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import UserProfile from './UserProfile';
 
-function Login() {
+
+export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username);
+    {/* merr data nga forma nqs plotesohet kushti i validimit
 
-    const navigate = useNavigate();
+    // const navigateToProfile = () => {
+    //   // navigate('/UserProfile');
+    // }
 
-    const navigateTo = () => {
-      navigate('');
-    }
-    const navigateLogin = () => {
-      navigate('/');
-    }
-
+    // const navigateLogin = () => {
+    //   // navigate('/');
+    // }
+  */}
   }
 
-  // https://bobbyhadz.com/blog/react-onclick-redirect#:~:text=To%20redirect%20to%20another%20page,function%20lets%20us%20navigate%20programmatically. 
-  // https://react-hook-form.com/api/useform/handlesubmit/
-  // UserProfile to be added as a tag and working on the redirect button of log in 
   return (
     <div className='bg-image'>
       <div className='login-box'>
@@ -40,11 +38,15 @@ function Login() {
           <input type="checkbox" id="remember-me" name="remember-button" value="Remember" />
           <label for="remember-button">Remember me</label><br />
           <a href="/">Forgot your password?</a> <br />
-          <button className='signup'>SIGN UP</button><button type='submit' onClick={navigateToProfile}>LOGIN</button>
+          <button className='signup'>SIGN UP</button><button type='submit'>LOGIN</button>
+          {/*levizja e userit ne momentin e logimit nga credentials n profil */}
+          {/* onClick={navigateToProfile} */}
+          {/* <Routes>
+            <Route path="/UserProfile" element={<UserProfile />} />
+            <Route path="/" element={<Login />} />
+          </Routes>  */}
         </form>
       </div>
     </div>
   )
 }
-
-export default Login;

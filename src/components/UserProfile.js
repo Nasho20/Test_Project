@@ -10,7 +10,7 @@ const UserProfile = () => {
 
     return (
 
-        <UserProfile>
+        <Login>
             {
                 showProfile ? (<form onSubmit={handleSubmit}>
                     <div class="container rounded bg-white mt-5 mb-5">
@@ -45,7 +45,7 @@ const UserProfile = () => {
                 )
             }
 
-        </UserProfile>
+        </Login>
     )
 }
 

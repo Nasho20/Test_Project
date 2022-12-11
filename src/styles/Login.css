@@ -20,7 +20,7 @@ button {
   color: white;
   border-radius: 5px;
   font-size: 16px;
-  margin-top: 8px;
+  margin-top: 14px;
   margin-left: 8px;
   margin-right: 8px;
   padding: 5px 10px;
@@ -70,4 +70,21 @@ body {
 
 .email {
   margin-left: 26px;
+}
+
+.password{
+  margin-bottom: 8px;
+}
+
+h1, h3 {
+  color: royalblue;
+  font-family: monospace;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h3{
+  font-size: 20px;
 }

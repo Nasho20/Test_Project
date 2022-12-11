@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from './components/Login.js'
-import Register from './components/Register';
+import UserProfile from './components/UserProfile';
 
 function App() {
-  const [currentForm, setCurrentForm] = useState('login');
+  const [token, setToken] = useState();
+
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+
   return (
-    <div className="App">
-      {
-        currentForm == "login" ? <Login /> : <Register />
-      }
-    </div>
+    <Router>
+      <Login>
+        <Routes>
+          <Route path='/login' element={Login} />
+          <Route path='/userprofile' element={UserProfile} />
+        </Routes>
+      </Login>
+    </Router>
   );
 }
 

@@ -72,11 +72,12 @@ body {
   margin-left: 26px;
 }
 
-.password{
+.password {
   margin-bottom: 8px;
 }
 
-h1, h3 {
+h1,
+h3 {
   color: royalblue;
   font-family: monospace;
 }
@@ -85,6 +86,6 @@ h1 {
   font-size: 30px;
 }
 
-h3{
+h3 {
   font-size: 20px;
 }

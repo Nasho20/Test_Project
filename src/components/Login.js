@@ -14,13 +14,13 @@ export default function Login() {
 
   const fetchUserData = () => {
 
-    fetch("https://jsonplaceholder.typicode.com/users") //UserData
+    fetch("userdata.JSON") 
       .then(response => response.json())
       .then(result => {
 
         for (var i = 0; i <= result.length; i++) {
           const checkEmail = result[i].email === username;
-          // const checkPassword = result[0].password === password;
+          const checkPassword = result[i].password === password;
           if (checkEmail) {
             setLoggedIn(true)
             setShowError(false)
@@ -29,8 +29,17 @@ export default function Login() {
             setLoggedIn(false)
             setShowError(true)
           }
+          if (checkPassword) {
+            setLoggedIn(true)
+            setShowError(false)
+            break;
+          } else {
+            setLoggedIn(false)
+            setShowError(true)
+          }
         }
-      })
+      }
+    )
   }
 
   if (loggedIn) return <UserProfile />

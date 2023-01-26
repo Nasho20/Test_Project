@@ -59,7 +59,7 @@ body {
     width: 350px;
     position: relative;
     margin-top: 80px;
-    box-shadow: 5px 10px rgb(189, 190, 186);
+    box-shadow: 5px 10px 8px 0px rgb(189 190 186);
   }
 }
 

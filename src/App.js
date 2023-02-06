@@ -1,7 +1,8 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Login from './components/Login.js'
+import Login from "./components/Login.js";
+import LoginExample from "./components/LoginExample";
 // import UserProfile from './components/UserProfile';
 
 function App() {
@@ -12,12 +13,13 @@ function App() {
     // </div>
     <div>
       <Login />
+      {/* <LoginExample /> */}
       {/* <UserProfile /> */}
     </div>
     // <Router>
     //   <Login>
     //     <Routes>
-    //       <Route path='/login' element={Login} /> 
+    //       <Route path='/login' element={Login} />
     //       <Route path='/userprofile' element={UserProfile} />
     //     </Routes>
     //   </Login>

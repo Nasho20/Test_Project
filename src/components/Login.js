@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Login.css";
 import UserProfile from "./UserProfile";
-import {
-  getItemFromStorage,
-  setItemOnStorage,
-  setTokenOnStorage,
-} from "../utils/storage";
+import { getItemFromStorage, setItemOnStorage } from "../utils/storage";
 import constants from "../utils/constants";
 
 export default function Login() {

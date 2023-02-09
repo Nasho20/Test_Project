@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Login from "./Login";
+import "../styles/UserProfile.css";
+// import LogoutIcon from "@mui/icons-material/Logout";
 
 const UserProfile = ({ user }) => {
   const [showProfile, setShowProfile] = useState(false);
@@ -19,6 +20,7 @@ const UserProfile = ({ user }) => {
                 width="150px"
                 src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
               />
+              {/* <LogoutIcon /> */}
               <span class="font-weight-bold"></span>
               <span class="text-black-50">{user.email}</span>
               <span> </span>

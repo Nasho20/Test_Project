@@ -12,7 +12,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(false);
     const token = getItemFromStorage({
       key: constants.TOKEN,
     });

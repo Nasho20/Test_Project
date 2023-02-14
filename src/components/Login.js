@@ -30,7 +30,10 @@ export default function Login() {
         .then((data) => {
           console.log(data);
           if (data.success === true) {
-            setUser(data.data[0]);
+            setUser({
+              ...data.data[0],
+              user_id: data.data[0].id,
+            });
             setLoading(false);
           }
         })
@@ -78,7 +81,7 @@ export default function Login() {
         {/* spinner to be added */}
       </div>
     );
-  if (!loading && user) return <UserProfile user={user} />;
+  if (!loading && user) return <UserProfile user={user} setUser={setUser} />;
   else
     return (
       <div className="bg-image">

@@ -1,19 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/UserProfile.css";
-import Login from "./Login";
 import constants from "../utils/constants";
+import { getItemFromStorage, removeItemFromStorage } from "../utils/storage";
 
-const UserProfile = ({ user }) => {
+const UserProfile = ({ user, setUser }) => {
+  const [name, setName] = useState(user.name);
+  const [age, setAge] = useState(user.age);
   // const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const logoutHandler = () => {
+    removeItemFromStorage({ key: constants.TOKEN });
+    removeItemFromStorage({ key: constants.USER_ID });
+    setUser(null);
   };
 
-  const logoutHandler = () => {
-    window.localStorage.clear();
-    return <Login />;
+  console.log(user);
+  const handleUpdate = () => {
+    fetch(`https://apingweb.com/api/user/edit/${user.user_id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: user.email,
+        name,
+        age,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.success === true) {
+          setUser((prev) => ({
+            ...prev,
+            age,
+            name,
+          }));
+          // setLoading(false);
+        }
+      })
+      .finally(() => {
+        //setLoading(false);
+      });
   };
+
   return (
     <div class="bg_image_2">
       <form>
@@ -24,6 +54,8 @@ const UserProfile = ({ user }) => {
                 <img
                   class="avatar_image"
                   width="150px"
+                  height="150px"
+                  style={{ borderRadius: "50%" }}
                   src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
                 />
                 <span class="font-weight-bold"></span>
@@ -40,26 +72,29 @@ const UserProfile = ({ user }) => {
                 <div class="row mt-2">
                   <div class="col-md-6">
                     <label class="labels">Name: </label>
-                    <input type="text" class="form-control" value="" />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="labels">Email: </label>
-                    <input type="text" class="form-control" value="" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
                   </div>
                 </div>
                 <div class="col-md-12">
                   <label class="labels">Age: </label>
-                  <input type="text" class="form-control" value="" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                  />
                 </div>
-                {/* <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Phone Number: </label><input type="text" class="form-control" value="" /></div>
-                                <div class="col-md-12"><label class="labels">Password: </label><input type="text" class="form-control" value="" /></div>
-                                <div class="col-md-12"><label class="labels">Address: </label><input type="text" class="form-control" value="" /></div>
-                                <div class="col-md-12"><label class="labels">LinkedIn: </label><input type="text" class="form-control" value="" /></div>
-                </div> */}
-
                 <div class="mt-5 text-center">
-                  <button class="btn btn-primary profile-button" type="button">
+                  <button
+                    class="btn btn-primary profile-button"
+                    type="button"
+                    onClick={handleUpdate}
+                  >
                     Save Profile
                   </button>
                 </div>

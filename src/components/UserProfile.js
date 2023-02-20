@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "../styles/UserProfile.css";
 import constants from "../utils/constants";
-import { getItemFromStorage, removeItemFromStorage } from "../utils/storage";
+import { removeItemFromStorage } from "../utils/storage";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const UserProfile = ({ user, setUser }) => {
+const UserProfile = ({ user, setUser, setLoggedIn }) => {
   const [name, setName] = useState(user.name);
   const [age, setAge] = useState(user.age);
   // const [loading, setLoading] = useState(false);
@@ -12,6 +13,7 @@ const UserProfile = ({ user, setUser }) => {
     removeItemFromStorage({ key: constants.TOKEN });
     removeItemFromStorage({ key: constants.USER_ID });
     setUser(null);
+    setLoggedIn(null);
   };
 
   console.log(user);
@@ -51,13 +53,21 @@ const UserProfile = ({ user, setUser }) => {
           <div class="row">
             <div class="col-md-3 border-right">
               <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img
+                {/* <<img
                   class="avatar_image"
                   width="150px"
                   height="150px"
                   style={{ borderRadius: "50%" }}
                   src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
-                />
+                /> */}
+                <div>
+                  <AccountCircleIcon
+                    class="avatar_image"
+                    width="150px"
+                    height="150px"
+                    style={{ borderRadius: "50%" }}
+                  />
+                </div>
                 <span class="font-weight-bold"></span>
                 <span class="text-black-50">{user.email}</span>
                 <button onClick={logoutHandler}>Logout</button>

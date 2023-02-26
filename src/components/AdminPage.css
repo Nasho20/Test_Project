@@ -1,0 +1,19 @@
+.admin-body {
+    display: flex;
+    place-content: center;
+    /* background-image: url("https://i.pinimg.com/originals/73/1c/87/731c87e4181c10ca8c60a556c3d2df34.jpg"); */
+    width: 100%;
+    /* height: 100%; */
+    /* position: fixed; */
+    background-color: #fceed1;
+}
+
+.table-content {
+    text-align: center;
+    color:black;    
+}
+
+.table-headers {
+    /* display: flex; */
+    justify-content: space-around;
+}

@@ -70,10 +70,12 @@ body {
 
 .email {
   margin-left: 26px;
+  color: royalblue;
 }
 
 .password {
   margin-bottom: 8px;
+  color: royalblue;
 }
 
 h1,

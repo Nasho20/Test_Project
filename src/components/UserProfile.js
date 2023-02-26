@@ -48,7 +48,7 @@ const UserProfile = ({ user, setUser, setLoggedIn }) => {
 
   return (
     <div class="bg_image_2">
-      <form>
+      <form class="logged-in-form">
         <div class="container rounded bg-white mt-5 mb-5">
           <div class="row">
             <div class="col-md-3 border-right">
@@ -105,7 +105,7 @@ const UserProfile = ({ user, setUser, setLoggedIn }) => {
                     type="button"
                     onClick={handleUpdate}
                   >
-                    Save Profile
+                    Edit Profile
                   </button>
                 </div>
               </div>

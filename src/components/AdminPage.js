@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { getItemFromStorage } from "../utils/storage";
+import { getItemFromStorage, removeItemFromStorage } from "../utils/storage";
 import constants from "../utils/constants";
-import LogoutButton from "./LogoutButton";
+// import LogoutButton from "./LogoutButton";
+import "./AdminPage.css";
 
-const AdminPage = () => {
+const AdminPage = ({ setUser, setLoggedIn }) => {
   const [users, setUsers] = useState([]);
+  const logoutHandler = () => {
+    removeItemFromStorage({ key: constants.TOKEN });
+    removeItemFromStorage({ key: constants.USER_ID });
+    setUser(null);
+    setLoggedIn(null);
+  };
 
   useEffect(() => {
     const token = getItemFromStorage({
@@ -27,15 +34,15 @@ const AdminPage = () => {
   }, []);
 
   return (
-    <div>
-      <table>
+    <div className="admin-body">
+      <table className="table-content">
         <thead>
-          <tr>
+          <tr className="tabble-headers">
             <th>Name</th>
             <th>Age</th>
             <th>Email</th>
             <th>Image</th>
-            <button onSubmit={LogoutButton}>Logout</button>
+            <button onClick={logoutHandler}>Logout</button>
           </tr>
         </thead>
         <tbody>

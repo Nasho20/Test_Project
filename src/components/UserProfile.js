@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/UserProfile.css";
 import constants from "../utils/constants";
 import { removeItemFromStorage } from "../utils/storage";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const UserProfile = ({ user, setUser, setLoggedIn }) => {
+const UserProfile = ({ user, setUser, setLoggedIn, setAdminEditingUser }) => {
   const [name, setName] = useState(user.name);
   const [age, setAge] = useState(user.age);
+  const isAdmin = setAdminEditingUser;
   // const [loading, setLoading] = useState(false);
 
   const logoutHandler = () => {
@@ -16,7 +17,12 @@ const UserProfile = ({ user, setUser, setLoggedIn }) => {
     setLoggedIn(null);
   };
 
-  console.log(user);
+  useEffect(() => {
+    if (isAdmin) {
+      setAdminEditingUser(true);
+    }
+  }, []);
+
   const handleUpdate = () => {
     fetch(`https://apingweb.com/api/user/edit/${user.user_id}`, {
       method: "PUT",
@@ -27,17 +33,25 @@ const UserProfile = ({ user, setUser, setLoggedIn }) => {
         email: user.email,
         name,
         age,
+        // image:
+        // "https://www.google.al/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ASuperman_Clipart.svg&psig=AOvVaw1Vbpi1GI03t98VBv-r8Afj&ust=1677700128905000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLil3JX-uP0CFQAAAAAdAAAAABAI",
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         if (data.success === true) {
-          setUser((prev) => ({
-            ...prev,
-            age,
-            name,
-          }));
+          if (isAdmin) {
+            removeItemFromStorage({ key: constants.EDIT_USER_ID });
+            setAdminEditingUser(false);
+            setUser(null);
+          } else {
+            setUser((prev) => ({
+              ...prev,
+              age,
+              name,
+            }));
+          }
           // setLoading(false);
         }
       })
@@ -70,7 +84,7 @@ const UserProfile = ({ user, setUser, setLoggedIn }) => {
                 </div>
                 <span class="font-weight-bold"></span>
                 <span class="text-black-50">{user.email}</span>
-                <button onClick={logoutHandler}>Logout</button>
+                {setLoggedIn && <button onClick={logoutHandler}>Logout</button>}
                 <span> </span>
               </div>
             </div>
@@ -99,6 +113,7 @@ const UserProfile = ({ user, setUser, setLoggedIn }) => {
                     onChange={(e) => setAge(e.target.value)}
                   />
                 </div>
+
                 <div class="mt-5 text-center">
                   <button
                     class="btn btn-primary profile-button"

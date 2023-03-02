@@ -6,6 +6,7 @@
     /* height: 100%; */
     /* position: fixed; */
     background-color: #fceed1;
+    column-gap: 1rem;
 }
 
 .table-content {
@@ -16,4 +17,13 @@
 .table-headers {
     /* display: flex; */
     justify-content: space-around;
+}
+
+.table-cell {
+    padding: 1rem;
+}
+
+.table-cell.user-email:hover {
+    cursor: pointer;
+    color: #2051c5;
 }

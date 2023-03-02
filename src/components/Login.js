@@ -24,7 +24,6 @@ export default function Login() {
       const isAdmin = checkIsAdmin({ email: adminEmail });
       if (isAdmin) {
         setLoggedIn(constants.login_user_state.ADMIN);
-        // console.log(setLoggedIn);
       } else {
         const id = getItemFromStorage({
           key: constants.USER_ID,

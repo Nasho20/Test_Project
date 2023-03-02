@@ -8,7 +8,6 @@ const UserProfile = ({ user, setUser, setLoggedIn, setAdminEditingUser }) => {
   const [name, setName] = useState(user.name);
   const [age, setAge] = useState(user.age);
   const isAdmin = setAdminEditingUser;
-  // const [loading, setLoading] = useState(false);
 
   const logoutHandler = () => {
     removeItemFromStorage({ key: constants.TOKEN });
@@ -33,8 +32,6 @@ const UserProfile = ({ user, setUser, setLoggedIn, setAdminEditingUser }) => {
         email: user.email,
         name,
         age,
-        // image:
-        // "https://www.google.al/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3ASuperman_Clipart.svg&psig=AOvVaw1Vbpi1GI03t98VBv-r8Afj&ust=1677700128905000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLil3JX-uP0CFQAAAAAdAAAAABAI",
       }),
     })
       .then((response) => response.json())
@@ -52,12 +49,9 @@ const UserProfile = ({ user, setUser, setLoggedIn, setAdminEditingUser }) => {
               name,
             }));
           }
-          // setLoading(false);
         }
       })
-      .finally(() => {
-        //setLoading(false);
-      });
+      .finally(() => {});
   };
 
   return (
@@ -67,13 +61,6 @@ const UserProfile = ({ user, setUser, setLoggedIn, setAdminEditingUser }) => {
           <div class="row">
             <div class="col-md-3 border-right">
               <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                {/* <<img
-                  class="avatar_image"
-                  width="150px"
-                  height="150px"
-                  style={{ borderRadius: "50%" }}
-                  src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
-                /> */}
                 <div>
                   <AccountCircleIcon
                     class="avatar_image"

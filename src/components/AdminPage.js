@@ -5,7 +5,7 @@ import {
   removeItemFromStorage,
 } from "../utils/storage";
 import constants from "../utils/constants";
-import "./AdminPage.css";
+import "../styles/AdminPage.css";
 import UserProfile from "./UserProfile";
 
 const AdminPage = ({ setUser, setLoggedIn }) => {

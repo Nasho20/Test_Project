@@ -7,4 +7,9 @@ export default {
     ADMIN: "admin",
     USER: "user",
   },
+  routes: {
+    LOGIN: "/login",
+    HOME: "/home",
+    DASHBOARD: "/dashboard",
+  },
 };

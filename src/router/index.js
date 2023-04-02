@@ -10,11 +10,19 @@ export default function router() {
     <Routes>
       <Route
         path="/"
-        element={<Navigate to={constants.routes.HOME} replace />}
+        element={<Navigate to={constants.routes.Login} replace />}
       />
       <Route path={constants.routes.LOGIN} element={<Login />} />
       <Route path={constants.routes.HOME} element={<UserProfile />} />
       <Route path={constants.routes.DASHBOARD} element={<AdminPage />} />
+      <Route
+        path={constants.routes.DASHBOARD}
+        element={
+          <div>
+            <p>Not Found</p>
+          </div>
+        }
+      />
     </Routes>
   );
 }

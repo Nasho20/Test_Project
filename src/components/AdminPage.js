@@ -36,7 +36,6 @@ const AdminPage = ({ setUser, setLoggedIn }) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log({ data });
           if (data.success === true) {
             setUserDetails(data.data[0]);
           }

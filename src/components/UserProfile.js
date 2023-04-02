@@ -3,17 +3,25 @@ import "../styles/UserProfile.css";
 import constants from "../utils/constants";
 import { removeItemFromStorage } from "../utils/storage";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/action-creators/auth-actions";
+import { useNavigate } from "react-router-dom";
 
-const UserProfile = ({ user, setUser, setLoggedIn, setAdminEditingUser }) => {
+const UserProfile = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => {
+    return state.auth.user;
+  });
+
   const [name, setName] = useState(user.name);
   const [age, setAge] = useState(user.age);
-  const isAdmin = setAdminEditingUser;
+  const [adminEditingUser, setAdminEditingUser] = useState(false);
+  const isAdmin = false;
 
   const logoutHandler = () => {
-    removeItemFromStorage({ key: constants.TOKEN });
-    removeItemFromStorage({ key: constants.USER_ID });
-    setUser(null);
-    setLoggedIn(null);
+    dispatch(logout());
+    navigate(constants.routes.LOGIN);
   };
 
   useEffect(() => {
@@ -22,88 +30,58 @@ const UserProfile = ({ user, setUser, setLoggedIn, setAdminEditingUser }) => {
     }
   }, []);
 
-  const handleUpdate = () => {
-    fetch(`https://apingweb.com/api/user/edit/${user.user_id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: user.email,
-        name,
-        age,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.success === true) {
-          if (isAdmin) {
-            removeItemFromStorage({ key: constants.EDIT_USER_ID });
-            setAdminEditingUser(false);
-            setUser(null);
-          } else {
-            setUser((prev) => ({
-              ...prev,
-              age,
-              name,
-            }));
-          }
-        }
-      })
-      .finally(() => {});
-  };
+  const handleUpdate = () => {};
 
   return (
-    <div class="bg_image_2">
-      <form class="logged-in-form">
-        <div class="container rounded bg-white mt-5 mb-5">
-          <div class="row">
-            <div class="col-md-3 border-right">
-              <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+    <div className="bg_image_2">
+      <form className="logged-in-form">
+        <div className="container rounded bg-white mt-5 mb-5">
+          <div className="row">
+            <div className="col-md-3 border-right">
+              <div className="d-flex flex-column align-items-center text-center p-3 py-5">
                 <div>
                   <AccountCircleIcon
-                    class="avatar_image"
+                    className="avatar_image"
                     width="150px"
                     height="150px"
                     style={{ borderRadius: "50%" }}
                   />
                 </div>
-                <span class="font-weight-bold"></span>
-                <span class="text-black-50">{user.email}</span>
-                {setLoggedIn && <button onClick={logoutHandler}>Logout</button>}
+                <span className="font-weight-bold"></span>
+                <span className="text-black-50">{user.email}</span>
+                <button onClick={logoutHandler}>Logout</button>
                 <span> </span>
               </div>
             </div>
-            <div class="col-md-5 border-right">
-              <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="text-right">Profile Settings</h4>
+            <div className="col-md-5 border-right">
+              <div className="p-3 py-5">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h4 className="text-right">Profile Settings</h4>
                 </div>
-                <div class="row mt-2">
-                  <div class="col-md-6">
-                    <label class="labels">Name: </label>
+                <div className="row mt-2">
+                  <div className="col-md-6">
+                    <label className="labels">Name: </label>
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </div>
                 </div>
-                <div class="col-md-12">
-                  <label class="labels">Age: </label>
+                <div className="col-md-12">
+                  <label className="labels">Age: </label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
                   />
                 </div>
 
-                <div class="mt-5 text-center">
+                <div className="mt-5 text-center">
                   <button
-                    class="btn btn-primary profile-button"
+                    className="btn btn-primary profile-button"
                     type="button"
                     onClick={handleUpdate}
                   >

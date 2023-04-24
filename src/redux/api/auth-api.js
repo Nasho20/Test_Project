@@ -23,3 +23,25 @@ export const apiGetUser = async ({ id }) => {
   const data = await response.json();
   return data;
 };
+
+export const apiUpdate = async ({ user }) => {
+  console.log({ user });
+  try {
+    const response = await fetch(
+      `https://apingweb.com/api/user/edit/${user.user_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: user.email,
+          name: user.name,
+          age: user.age,
+        }),
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (e) {}
+};

@@ -2,7 +2,7 @@ import { uiActions } from "../reducers/ui-reducer";
 import { setItemOnStorage, removeItemFromStorage } from "../../utils/storage";
 import constants from "../../utils/constants";
 import { authActions } from "../reducers/auth";
-import { apiGetUser, apiLogin } from "../api/auth-api";
+import { apiGetUser, apiLogin, apiUpdate } from "../api/auth-api";
 
 export const login = ({ email, password }) => {
   return async (dispatch) => {
@@ -36,5 +36,26 @@ export const logout = () => {
     removeItemFromStorage({ key: constants.USER_ID });
     dispatch(uiActions.success());
     dispatch(authActions.user(undefined));
+  };
+};
+
+export const updateUser = (user) => {
+  return async (dispatch) => {
+    dispatch(uiActions.start());
+    try {
+      const data = await apiUpdate(user);
+      if (!data.success) {
+        dispatch(uiActions.failed());
+      } else {
+        dispatch(uiActions.success());
+        dispatch(
+          authActions.user({
+            user,
+          })
+        );
+      }
+    } catch (error) {
+      dispatch(uiActions.failed(error.message));
+    }
   };
 };

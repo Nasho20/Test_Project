@@ -4,7 +4,7 @@ import constants from "../utils/constants";
 import { removeItemFromStorage } from "../utils/storage";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../redux/action-creators/auth-actions";
+import { logout, updateUser } from "../redux/action-creators/auth-actions";
 import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
@@ -19,6 +19,16 @@ const UserProfile = () => {
   const [adminEditingUser, setAdminEditingUser] = useState(false);
   const isAdmin = false;
 
+  const handleUpdateUser = () => {
+    dispatch(
+      updateUser({
+        user: {
+          ...user,
+          name,
+        },
+      })
+    );
+  };
   const logoutHandler = () => {
     dispatch(logout());
     navigate(constants.routes.LOGIN);
@@ -29,8 +39,6 @@ const UserProfile = () => {
       setAdminEditingUser(true);
     }
   }, []);
-
-  const handleUpdate = () => {};
 
   return (
     <div className="bg_image_2">
@@ -83,7 +91,7 @@ const UserProfile = () => {
                   <button
                     className="btn btn-primary profile-button"
                     type="button"
-                    onClick={handleUpdate}
+                    onClick={handleUpdateUser}
                   >
                     Edit Profile
                   </button>

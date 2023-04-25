@@ -24,6 +24,9 @@ export const apiGetUser = async ({ id }) => {
   return data;
 };
 
+
+//Nuk arrin te kryhet e sakte thirrja e update per nje user normal pasi API ka ndryshuar 
+//formatin e userave dhe aktiv eshte vetem admini
 export const apiUpdate = async ({ user }) => {
   console.log({ user });
   try {
